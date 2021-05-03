@@ -16,7 +16,16 @@ Initiate a pay Load by calling our Charge End point.
 
 "billing_country"=>"uganda". Pass Country and uganda if you are charging a Ugandan Mobile Money Number
 
-"currency"=>"UGX". Pass UGX as the currency to accept mobile money payments from Uganda
+# To accept Uganda Mobile Money
+
+Pass UGX as the currency to accept mobile money payments from Uganda
+
+"currency"=>"UGX"
+
+# To accept MPESA
+
+Pass Currency as "KES"
+"currency"=>"KES"
 
 "encryption_key"=>"50d31ae822b70bfdc20e233777c35a320087". Found on top of your dashboard.
 
