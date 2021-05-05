@@ -78,7 +78,7 @@ Dashboard withdraws only work for UGX wallet and you can only transfter money to
 
 Alternatively, u can make payouts using our Withdraw API.
 
-Send the Withdraw load to https://siliconsavannah.net/api_withdraw
+Send the Withdraw load to http://payments.siliconsavannah.net/api_withdraw
 
 Request ($req).
 To withdraw money to a user mobile money number, pass this as 'mm'
