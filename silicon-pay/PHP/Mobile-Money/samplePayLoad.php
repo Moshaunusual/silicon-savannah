@@ -8,7 +8,7 @@ $data = array(
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-  CURLOPT_URL => 'https://payments.siliconsavannah.net/process_payments',
+  CURLOPT_URL => 'https://silicon-pay.com/process_payments',
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,

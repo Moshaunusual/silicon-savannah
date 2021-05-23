@@ -1,7 +1,7 @@
 # Creating of a silicon Pay Account
 
 To accept Mobile Money from our API, Create A silicon Pay Account.
-Visit https://payments.siliconsavannah.net/ to create the account.
+Visit https://silicon-pay.com/ to create the account.
 
 #Initiate a pay Load.
 You Notice that in you dashboard there is a long encrypted key on the top. This is your Encryption Key that you shall pass to us.
@@ -78,7 +78,7 @@ Dashboard withdraws only work for UGX wallet and you can only transfter money to
 
 Alternatively, u can make payouts using our Withdraw API.
 
-Send the Withdraw load to http://payments.siliconsavannah.net/api_withdraw
+Send the Withdraw load to https://silicon-pay.com/api_withdraw
 
 Request ($req).
 To withdraw money to a user mobile money number, pass this as 'mm'
