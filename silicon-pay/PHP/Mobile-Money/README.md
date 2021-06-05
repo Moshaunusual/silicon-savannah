@@ -33,7 +33,7 @@ Pass Currency as "KES"
 
 "encryption_key"=>"Your-Account-Encryption-key". Found on top of your dashboard.
 
-"amount"=>"9000", Pass the Amount you are charging the user.
+"amount"=>"Charge Amount e.g 10000", Pass the Amount you are charging the user.
 
 "emailAddress"=>"test@gmail.com". Email Address of the person paying, This is where we shall send the reciept
 
