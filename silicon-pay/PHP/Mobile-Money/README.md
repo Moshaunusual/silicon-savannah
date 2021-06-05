@@ -31,13 +31,15 @@ Pass Currency as "KES"
 
 # OTHER PARAMETERS
 
-"encryption_key"=>"50d31ae822b70bfdc20e233777c35a320087". Found on top of your dashboard.
+"encryption_key"=>"Your-Account-Encryption-key". Found on top of your dashboard.
 
 "amount"=>"9000", Pass the Amount you are charging the user.
 
 "emailAddress"=>"test@gmail.com". Email Address of the person paying, This is where we shall send the reciept
 
-"phone"=>"256...","narrative"=>1234589. This is the Phone number that is making the payment, Clean it to start with 256
+"phone"=>"254.. or 256...",This is the Phone number that is making the payment,
+
+"txRef"=>1234589.
 
 call_back=> "https://your-call-back-url". This is the your Call Back url where we shall push a success webhook.
 
