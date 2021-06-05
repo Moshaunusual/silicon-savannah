@@ -1,12 +1,13 @@
 # Creating of a silicon Pay Account
 
-To accept card Payments (VISA, MAster Card, American Express) from our API, Create A silicon Pay Account.
-Visit https://silicon-pay.com/ to create the account.
+To accept card Payments (VISA, Master Card, American Express) from our API, Create A silicon Pay Account.
+Visit: https://silicon-pay.com/ to create the account.
 
-#Initiate a pay Load.
-You Notice that in you dashboard there is a long encrypted key on the top. This is your Encryption Key that you shall pass to us.
+# Initiate a pay Load.
 
-Please keep this key secrete and dont share it with public.
+You Notice that in you dashboard there is a long encrypted key on the top. This is your Encryption Key.
+
+Please keep this key secrete and don't share it with anyone.
 
 # Perform a Curl Request.
 
@@ -50,8 +51,6 @@ You are required to load this link in an Iframe or a page or a Modal
 # Sample Response.
 
 {"status":"200","message":"successful","link":"https://silicon-pay.com/DirectOrder/56355Erqtt"}
-
-N.B Take note of the "Narrative" in this response ans that shall be the unique transaction reference for that payload.
 
 # WebHook
 
