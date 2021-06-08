@@ -1,4 +1,4 @@
-# Creating of a silicon Pay Account
+# Accept Credit Card Payments on your website, App or Blog
 
 To accept card Payments (VISA, Master Card, American Express) from our API, Create A silicon Pay Account.
 Visit: https://silicon-pay.com/ to create the account.
@@ -45,7 +45,7 @@ redirectUrl=> "https://your-sites/thank-you". When a customers Complete the paym
 
 When the initiation of the payload is ok. i.e all the parameters passed are correct, You shall recieve a json response with Status "200" and Message "successful".
 
-The recieved json response shall container and payment link .
+The recieved json response shall contain the payment link .
 You are required to load this link in an Iframe or a page or a Modal
 
 # Sample Response.
