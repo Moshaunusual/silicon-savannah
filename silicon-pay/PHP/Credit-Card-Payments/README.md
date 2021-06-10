@@ -19,6 +19,8 @@ Initiate a pay Load by calling our Charge End point.
 
 if you are billing your customers in a local currency, "UGX or KES" Pass currency as either UGX or KES or else pass this value as USD.
 
+If you would like to dynamically determine the users country and pass the appropriate currency value, You can use our Silicon city penetrations API. see the city Penetration Example.
+
 # Mandatory parameters
 
 "encryption_key"=>"Your-Account-Encryption-key". Found on top of your dashboard.
@@ -37,9 +39,9 @@ redirectUrl=> "https://your-sites/thank-you". When a customers Complete the paym
 
 # Other Parameters.
 
-"fname" This is your Customers first Name,
+"fname" This is your Customers first Name.
 "lname" This is your customers Last Name.
-"Description" This is the description of the payments, E.g Purchasing a boat
+"Description" This is the description of the payments, E.g Purchasing a boat.
 
 # Sample Success payload Response
 

@@ -16,6 +16,10 @@ Initiate a pay Load by calling our Charge End point.
 
 "billing_country"=>"uganda". Pass Country and uganda if you are charging a Ugandan Mobile Money Number
 
+# Currency.
+
+If you would like to dynamically determine the users country/loction and pass the appropriate currency value, You can use our Silicon city penetrations API. see the city Penetration Example.
+
 # To accept Uganda Mobile Money
 
 Pass UGX as the currency to accept mobile money payments from Uganda
