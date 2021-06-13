@@ -19,7 +19,7 @@ Initiate a pay Load by calling our Charge End point.
 
 if you are billing your customers in a local currency, "UGX or KES" Pass currency as either UGX or KES or else pass this value as USD.
 
-If you would like to dynamically determine the users country and pass the appropriate currency value, You can use our Silicon city penetrations API. see the city Penetration Example.
+If you would like to dynamically determine the users country/location and pass the appropriate currency value, You can use our Silicon city penetrations API. see the city Penetration Example.
 
 # Mandatory parameters
 
