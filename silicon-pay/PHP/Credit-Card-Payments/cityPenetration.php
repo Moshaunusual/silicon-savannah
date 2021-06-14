@@ -21,6 +21,7 @@ function get_client_ip() {
 }
 
 $ip =  get_client_ip();
+
 $curl = curl_init();
 
 curl_setopt_array($curl, array(

@@ -1,8 +1,8 @@
 <?php
 
 $data = array(
-  "req"=>"mobile_money","billing_country"=>"uganda","currency"=>"UGX","encryption_key"=>"50d31ae822b70bfdc20e233777c35a320087",
-  "amount"=>"9000","emailAddress"=>"test@gmail.com","phone"=>"256...","narrative"=>1234589,
+  "req"=>"mobile_money","currency"=>"UGX","encryption_key"=>"50d31ae822b70bfdc20e233777c35a320087",
+  "amount"=>"9000","emailAddress"=>"test@gmail.com","phone"=>"256...","txRef"=>1234589,
   "call_back"=>"https://your-call-back-url"
 );
 $curl = curl_init();
