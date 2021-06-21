@@ -1,3 +1,5 @@
+# You can withdraw your earning via or our dashboard or using our withdraw API.
+
 # Dashboard withdraws
 
 To Withdraw from the dashboard, Click on Finance->Make a Transfer.
@@ -62,3 +64,9 @@ This is a unique withdraw key that was sent to your email address when you regis
 If you never recieved this key or you deleted this email, Kindly Contact us to retrieve your Secrete key.
 
 "secrete_key"=>"XXXX"
+
+# Debit Wallet.
+
+The wallet that you want to debit.
+N.B For the transaction to go through, you must have sufficient money on the wallet that you want to debit.
+Pass this value as "debit_wallet":"UGX"
