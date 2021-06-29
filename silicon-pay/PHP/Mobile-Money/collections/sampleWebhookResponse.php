@@ -1,1 +1,1 @@
-{"status":"successful","amount":5000,"narrative":"fg35746167","network_ref":"llff00e","external_ref":"9697643096","msisdn":"2567086585793"}
+{"status":"successful","amount":5000,"txRef":"fg35746167","network_ref":"llff00e","external_ref":"9697643096","msisdn":"2567086585793"}
