@@ -35,7 +35,9 @@ If you would like to dynamically determine the users country/location and pass t
 
 call_back=> "https://your-call-back-url". This is the your Call Back url where we shall push a success webhook.
 
-redirectUrl=> "https://your-sites/thank-you". When a customers Complete the payment, We shall redirect them to your redirectUrl. This can be a thank you page.
+success_url=> "https://your-sites/thank-you". When a customers successfully Completes the payment, We shall reUrl. This can be a thank you page.direct them to your redirect
+
+failure_url=> "https://your-sites/failed.php". When the card has not been charged due to a card error or insufficient funds. We shall redirect your customers to this Url. This can be a failure page. The reason shall be appended in the url.
 
 # Other Parameters.
 
