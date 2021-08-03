@@ -37,7 +37,7 @@ call_back=> "https://your-call-back-url". This is the your Call Back url where w
 
 success_url=> "https://your-sites/thank-you". When a customers successfully Completes the payment, We shall reUrl. This can be a thank you page.direct them to your redirect
 
-failure_url=> "https://your-sites/failed.php". When the card has not been charged due to a card error or insufficient funds. We shall redirect your customers to this Url. This can be a failure page. The reason shall be appended in the url.
+call_back => This is the Instant payment Notification URL, We a transaction has succeeded, A webhook shall be sent to this url. Use the parameters sent to give value to your users.
 
 # Other Parameters.
 
