@@ -12,7 +12,7 @@ $secrete_key ="XXXX";
 $encryption_key = "XXXXX";
 $phone = "254 ... or 256 ...";
 
-$msg	=	hash('sha256',encryption_key).$phone_number;
+$msg	=	hash('sha256',$encryption_key).$phone_number;
 
 $signature	= hash_hmac('sha256',$msg, $secrete_key);
   
