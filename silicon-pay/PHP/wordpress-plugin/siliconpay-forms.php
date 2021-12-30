@@ -1,11 +1,11 @@
 <?php
 /*
   Plugin Name:  Payment Forms for SiliconPay
-  Plugin URI:   https://github.com/simillustra/Wordpress-Payment-forms-for-SiliconPay
+  Plugin URI:   https://github.com/AfricanSiliconValley/silicon-savannah/tree/main/silicon-pay/PHP/wordpress-plugin
   Description:  Payment Forms for SiliconPay allows you create forms that will be used to bill clients for goods and services via SiliconPay.
   Version:      1.0.0
-  Author:       SiliconPay
-  Author URI:   http://siliconpay.com
+  Author:       Silicon Savannah LTD
+  Author URI:   http://silicon-pay.com
   License:      GPL-2.0+
   License URI:  http://www.gnu.org/licenses/gpl-2.0.txt
 */
