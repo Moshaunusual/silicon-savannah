@@ -6,13 +6,13 @@ Welcome to the Paysment Forms for SiliconPay repository on GitHub. Here you can 
 
 ## Manual Installation.
 
-1. Download the zip file of the plugin and import it in our wordpress plugin.
+1. Download the zip file of the plugin and upload/import it in our wordpress.
 2. Activate the plugin.
 3. Go to the silicon-pay-forms plugin under setting and add your account encryption and secrete key.
-4. Create your form under the silicon-pay-forms plugin.
-5. Publish ypur changes.
+4. Create and customise your payment form under the silicon-pay-forms plugin.
+5. Publish your changes.
 6. After publishing your changes, A short code for you form shall be generated.
-7. Paste this code to avery page you want it to a appear.
+7. Paste this code to every page/section you want the payment form to appear on.
 
 ## Automatic Installation.
 
