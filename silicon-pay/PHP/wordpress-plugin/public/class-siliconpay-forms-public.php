@@ -2518,16 +2518,16 @@ function spg_wp_siliconpay_send_receipt_owner($id, $currency, $amount, $name, $e
                                                 if (array_key_exists("0", $new)) {
                                                     foreach ($new as $key => $item) {
                                                         if ($item->type == 'text') {
-                                                            echo $item->display_name . "<strong>  :" . $item->value . "</strong><br>";
+                                                            echo $item->display_name . "<strong>  :" . esc_attr($item->value) . "</strong><br>";
                                                         } else {
-                                                            echo $item->display_name . "<strong>  : <a target='_blank' href='" . $item->value . "'>link</a></strong><br>";
+                                                            echo $item->display_name . "<strong>  : <a target='_blank' href='" . esc_url($item->value) . "'>link</a></strong><br>";
                                                         }
                                                     }
                                                 } else {
                                                     $text = '';
                                                     if (count($new) > 0) {
                                                         foreach ($new as $key => $item) {
-                                                            echo $key . "<strong>  :" . $item . "</strong><br />";
+                                                            echo $key . "<strong>  :" . esc_attr($item) . "</strong><br />";
                                                         }
                                                     }
                                                 } ?>
@@ -3302,8 +3302,8 @@ function spg_wp_siliconpay_submit_action()
 
     $table = $wpdb->prefix . SPG_WP_SILICONPAY_TABLE;
     $metadata = $_POST;
-    $fullname = $_POST['pf-fname'];
-    $recur = $_POST['pf-recur'];
+    $fullname = sanitize_text_field($_POST['pf-fname']);
+    $recur = sanitize_text_field($_POST['pf-recur']);
     unset($metadata['action']);
     unset($metadata['pf-recur']);
     unset($metadata['pf-id']);
@@ -3318,24 +3318,24 @@ function spg_wp_siliconpay_submit_action()
     $untouchedmetadata = spg_wp_siliconpay_meta_as_custom_fields($metadata);
     $fixedmetadata = [];
     // print_r($fixedmetadata );
-    $filelimit = get_post_meta($_POST["pf-id"], '_filelimit', true);
-    $currency = get_post_meta($_POST["pf-id"], '_currency', true);
-    $formamount = get_post_meta($_POST["pf-id"], '_amount', true); /// From form
-    $recur = get_post_meta($_POST["pf-id"], '_recur', true);
-    $subaccount = get_post_meta($_POST["pf-id"], '_subaccount', true);
-    $txnbearer = get_post_meta($_POST["pf-id"], '_txnbearer', true);
-    $transaction_charge = get_post_meta($_POST["pf-id"], '_merchantamount', true);
+    $filelimit = get_post_meta(sanitize_text_field($_POST["pf-id"]), '_filelimit', true);
+    $currency = get_post_meta(sanitize_text_field($_POST["pf-id"]), '_currency', true);
+    $formamount = get_post_meta(sanitize_text_field($_POST["pf-id"]), '_amount', true); /// From form
+    $recur = get_post_meta(sanitize_text_field($_POST["pf-id"]), '_recur', true);
+    $subaccount = get_post_meta(sanitize_text_field($_POST["pf-id"]), '_subaccount', true);
+    $txnbearer = get_post_meta(sanitize_text_field($_POST["pf-id"]), '_txnbearer', true);
+    $transaction_charge = get_post_meta(sanitize_text_field($_POST["pf-id"]), '_merchantamount', true);
     $transaction_charge = $transaction_charge;
 
-    $txncharge = get_post_meta($_POST["pf-id"], '_txncharge', true);
-    $minimum = get_post_meta($_POST["pf-id"], '_minimum', true);
-    $variableamount = get_post_meta($_POST["pf-id"], '_variableamount', true);
-    $usevariableamount = get_post_meta($_POST["pf-id"], '_usevariableamount', true);
+    $txncharge = get_post_meta(sanitize_text_field($_POST["pf-id"]), '_txncharge', true);
+    $minimum = get_post_meta(sanitize_text_field($_POST["pf-id"]), '_minimum', true);
+    $variableamount = get_post_meta(sanitize_text_field($_POST["pf-id"]), '_variableamount', true);
+    $usevariableamount = get_post_meta(sanitize_text_field($_POST["pf-id"]), '_usevariableamount', true);
     $amount = (int)str_replace(' ', '', $_POST["pf-amount"]);
-    $variablename = $_POST["pf-vname"];
+    $variablename = isset($_POST["pf-vname"]) ? sanitize_text_field($_POST["pf-vname"]) : '';
     $originalamount = $amount;
     $quantity = 1;
-    $usequantity = get_post_meta($_POST["pf-id"], '_usequantity', true);
+    $usequantity = get_post_meta(sanitize_text_field($_POST["pf-id"]), '_usequantity', true);
 
     if (($recur == 'no') && ($formamount != 0)) {
         $amount = (int)str_replace(' ', '', $formamount);
@@ -3365,7 +3365,7 @@ function spg_wp_siliconpay_submit_action()
         'value' => $currency . number_format($amount)
     );
     if ($usequantity === 'yes' && !(($recur === 'optional') || ($recur === 'plan'))) {
-        $quantity = $_POST["pf-quantity"];
+        $quantity = sanitize_text_field($_POST["pf-quantity"]);
         $unitamount = (int)str_replace(' ', '', $amount);
         $amount = $quantity * $unitamount;
     }
@@ -3591,7 +3591,7 @@ function spg_wp_siliconpay_confirm_payment()
 
                 $usequantity = get_post_meta($payment_array->post_id, '_usequantity', true);
                 if ($usequantity = "yes") {
-                    $quantity = $_POST["quantity"];
+                    $quantity = sanitize_text_field($_POST["quantity"]);
                     $sold = get_post_meta($payment_array->post_id, '_sold', true);
                     // error_log(print_r("sold", TRUE)); 
                     // error_log(print_r($sold, TRUE)); 

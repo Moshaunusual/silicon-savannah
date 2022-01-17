@@ -457,7 +457,7 @@ function StartSiliconPay() {
             value: "spg-siliconpay",
           });
 
-          console.log("firstName+ - ", data);
+           // console.log("firstName+ - ", data);
 
           if (data.result == "success") {
             var names = data.name.split(" ");
@@ -499,7 +499,7 @@ function StartSiliconPay() {
             };
 
             $.ajax(settings).done(function (response) {
-              console.log("response", response, response.code);
+              // console.log("response", response, response.code);
 
               $.blockUI({ message: "Please wait..." });
               $.post(
@@ -519,7 +519,7 @@ function StartSiliconPay() {
                 function (newdata) {
                   data = JSON.parse(newdata);
 
-                  console.log("newdata", data);
+                  // console.log("newdata", data);
 
                   if (data.result == "success2") {
                     window.location.href = data.link;

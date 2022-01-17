@@ -4,6 +4,7 @@ class Spg_WP_SiliconPay_Admin
 {
     private $plugin_name;
     private $version;
+
     public function __construct($plugin_name, $version)
     {
         $this->plugin_name = $plugin_name;
@@ -15,6 +16,7 @@ class Spg_WP_SiliconPay_Admin
         {
             add_submenu_page('edit.php?post_type=siliconpay_form', 'Settings', 'Settings', 'edit_posts', basename(__FILE__), 'spg_wp_siliconpay_setting_page');
         }
+
         function spg_wp_siliconpay_register_setting_page()
         {
             register_setting('spg_wp-siliconpay-settings-group', 'mode');
@@ -28,6 +30,7 @@ class Spg_WP_SiliconPay_Admin
             register_setting('spg_wp-siliconpay-settings-group', 'adc');
             register_setting('spg_wp-siliconpay-settings-group', 'cap');
         }
+
         function spg_wp_siliconpay_txncheck($name, $txncharge)
         {
             if ($name == $txncharge) {
@@ -37,13 +40,15 @@ class Spg_WP_SiliconPay_Admin
             }
             return $result;
         }
+
         function spg_wp_siliconpay_setting_page()
         {
-?>
+            ?>
             <div class="wrap">
                 <h1>SiliconPay Forms Settings</h1>
-               <h2>API Keys Settings</h2>
-                <span>Get your API (Secret and Encryption ) Keys <a href="https://silicon-pay.com/login" target="_blank">here</a> </span>
+                <h2>API Keys Settings</h2>
+                <span>Get your API (Secret and Encryption ) Keys <a href="https://silicon-pay.com/login"
+                                                                    target="_blank">here</a> </span>
                 <form method="post" action="options.php">
                     <?php settings_fields('spg_wp-siliconpay-settings-group');
                     do_settings_sections('spg_wp-siliconpay-settings-group'); ?>
@@ -53,17 +58,21 @@ class Spg_WP_SiliconPay_Admin
 
                             <td>
                                 <select class="form-control" name="mode" id="parent_id">
-                                    <option value="test" <?php echo spg_wp_siliconpay_txncheck('test', esc_attr(get_option('mode'))) ?>>Testing Mode</option>
-                                    <option value="live" <?php echo spg_wp_siliconpay_txncheck('live', esc_attr(get_option('mode'))) ?>>Production Mode</option>
+                                    <option value="test" <?php echo spg_wp_siliconpay_txncheck('test', esc_attr(get_option('mode'))) ?>>
+                                        Testing Mode
+                                    </option>
+                                    <option value="live" <?php echo spg_wp_siliconpay_txncheck('live', esc_attr(get_option('mode'))) ?>>
+                                        Production Mode
+                                    </option>
                                 </select>
                         </tr>
                         <tr valign="top">
                             <th scope="row">Secret Key</th>
-                            <td><input type="text" name="lsk" value="<?php echo esc_attr(get_option('lsk')); ?>" /></td>
+                            <td><input type="text" name="lsk" value="<?php echo esc_attr(get_option('lsk')); ?>"/></td>
                         </tr>
                         <tr valign="top">
                             <th scope="row">Encryption Key</th>
-                            <td><input type="text" name="lpk" value="<?php echo esc_attr(get_option('lpk')); ?>" /></td>
+                            <td><input type="text" name="lpk" value="<?php echo esc_attr(get_option('lpk')); ?>"/></td>
                         </tr>
 
                     </table>
@@ -75,22 +84,29 @@ class Spg_WP_SiliconPay_Admin
 
                         <tr valign="top">
                             <th scope="row">Percentage</th>
-                            <td><input type="text" name="prc" value="<?php echo esc_attr(get_option('prc', 0.04)); ?>" /></td>
+                            <td><input type="text" name="prc" value="<?php echo esc_attr(get_option('prc', 0.04)); ?>"/>
+                            </td>
                         </tr>
 
                         <tr valign="top">
-                            <th scope="row">Threshold <br> <small>(amount above which SiliconPay adds the fixed amount below)</small></th>
-                            <td><input type="text" name="ths" value="<?php echo esc_attr(get_option('ths', 0)); ?>" /></td>
+                            <th scope="row">Threshold <br> <small>(amount above which SiliconPay adds the fixed amount
+                                    below)</small></th>
+                            <td><input type="text" name="ths" value="<?php echo esc_attr(get_option('ths', 0)); ?>"/>
+                            </td>
                         </tr>
 
                         <tr valign="top">
-                            <th scope="row">Additional Charge <br> <small> (amount added to percentage fee when transaction amount is above threshold) </small></th>
-                            <td><input type="text" name="adc" value="<?php echo esc_attr(get_option('adc', 0)); ?>" /></td>
+                            <th scope="row">Additional Charge <br> <small> (amount added to percentage fee when
+                                    transaction amount is above threshold) </small></th>
+                            <td><input type="text" name="adc" value="<?php echo esc_attr(get_option('adc', 0)); ?>"/>
+                            </td>
                         </tr>
 
                         <tr valign="top">
-                            <th scope="row">Cap <br> <small> (maximum charge siliconpay can charge on your transactions)</small></th>
-                            <td><input type="text" name="cap" value="<?php echo esc_attr(get_option('cap', 0)); ?>" /></td>
+                            <th scope="row">Cap <br> <small> (maximum charge siliconpay can charge on your
+                                    transactions)</small></th>
+                            <td><input type="text" name="cap" value="<?php echo esc_attr(get_option('cap', 0)); ?>"/>
+                            </td>
                         </tr>
                     </table>
 
@@ -98,8 +114,9 @@ class Spg_WP_SiliconPay_Admin
 
                 </form>
             </div>
-        <?php
+            <?php
         }
+
         add_action('init', 'register_spg_wp_siliconpay');
         function register_spg_wp_siliconpay()
         {
@@ -141,6 +158,7 @@ class Spg_WP_SiliconPay_Admin
             );
             register_post_type('siliconpay_form', $args);
         }
+
         add_filter('user_can_richedit', 'spg_wp_siliconpay_disable_wyswyg');
 
         function spg_wp_siliconpay_add_view_payments($actions, $post)
@@ -158,6 +176,7 @@ class Spg_WP_SiliconPay_Admin
             }
             return $actions;
         }
+
         add_filter('page_row_actions', 'spg_wp_siliconpay_add_view_payments', 10, 2);
 
 
@@ -166,6 +185,7 @@ class Spg_WP_SiliconPay_Admin
             $qtInit['buttons'] = 'fullscreen';
             return $qtInit;
         }
+
         function spg_wp_siliconpay_disable_wyswyg($default)
         {
             global $post_type, $_wp_theme_features;
@@ -183,6 +203,7 @@ class Spg_WP_SiliconPay_Admin
 
             return $default;
         }
+
         function spg_wp_siliconpay_remove_dashboard_widgets()
         {
             remove_meta_box('dashboard_right_now', 'dashboard', 'normal');   // Right Now
@@ -195,6 +216,7 @@ class Spg_WP_SiliconPay_Admin
             remove_meta_box('dashboard_secondary', 'dashboard', 'side');   // Other WordPress News
             // use 'dashboard-network' as the second parameter to remove widgets from a network dashboard.
         }
+
         add_filter('manage_edit-siliconpay_form_columns', 'spg_wp_siliconpay_edit_dashboard_header_columns');
 
         function spg_wp_siliconpay_edit_dashboard_header_columns($columns)
@@ -209,6 +231,7 @@ class Spg_WP_SiliconPay_Admin
 
             return $columns;
         }
+
         add_action('manage_siliconpay_form_posts_custom_column', 'spg_wp_siliconpay_dashboard_table_data', 10, 2);
 
         function spg_wp_siliconpay_dashboard_table_data($column, $post_id)
@@ -234,6 +257,7 @@ class Spg_WP_SiliconPay_Admin
                     break;
             }
         }
+
         add_filter('default_content', 'spg_wp_siliconpay_editor_content', 10, 2);
 
         function spg_wp_siliconpay_editor_content($content, $post)
@@ -249,11 +273,13 @@ class Spg_WP_SiliconPay_Admin
 
             return $content;
         }
+
         /////
         function spg_wp_siliconpay_editor_help_metabox($post)
         {
             do_meta_boxes(null, 'custom-metabox-holder', $post);
         }
+
         add_action('edit_form_after_title', 'spg_wp_siliconpay_editor_help_metabox');
 
         function spg_wp_siliconpay_editor_help_metabox_details($post)
@@ -261,27 +287,32 @@ class Spg_WP_SiliconPay_Admin
             echo '<input type="hidden" name="eventmeta_noncename" id="eventmeta_noncename" value="' .
                 wp_create_nonce(plugin_basename(__FILE__)) . '" />'; ?>
             <div class="awesome-meta-admin">
-                Email, Phone number  and Full Name field is added automatically, no need to include that.<br /><br />
-                To make an input field compulsory add <code> required="required" </code> to the shortcode <br /><br />
-                It should look like this <code> [text name="Full Name" required="required" ]</code><br /><br />
+                Email, Phone number and Full Name field is added automatically, no need to include that.<br/><br/>
+                To make an input field compulsory add <code> required="required" </code> to the shortcode <br/><br/>
+                It should look like this <code> [text name="Full Name" required="required" ]</code><br/><br/>
 
                 <b style="color:red;">Warning:</b> Using the file input field may cause data overload on your server.
-                Be sure you have enough server space before using it. You also have the ability to set file upload limits.
+                Be sure you have enough server space before using it. You also have the ability to set file upload
+                limits.
 
             </div>
 
-        <?php
+            <?php
         }
+
         function spg_wp_siliconpay_editor_shortcode_details($post)
         {
-        ?>
+            ?>
             <p class="description">
-                <label for="wpcf7-shortcode">Copy this shortcode and paste it into your post, page, or text widget content:</label>
+                <label for="wpcf7-shortcode">Copy this shortcode and paste it into your post, page, or text widget
+                    content:</label>
                 <span class="shortcode wp-ui-highlight">
-                    <input type="text" id="wpcf7-shortcode" onfocus="this.select();" readonly="readonly" class="large-text code" value="[spg-siliconpay id=&quot;<?php echo $post->ID; ?>&quot;]"></span>
+                    <input type="text" id="wpcf7-shortcode" onfocus="this.select();" readonly="readonly"
+                           class="large-text code"
+                           value="[spg-siliconpay id=&quot;<?php echo $post->ID; ?>&quot;]"></span>
             </p>
 
-        <?php
+            <?php
         }
 
         add_action('add_meta_boxes', 'spg_wp_siliconpay_editor_add_extra_metaboxes');
@@ -295,7 +326,7 @@ class Spg_WP_SiliconPay_Admin
             add_meta_box('spg_wp_siliconpay_editor_add_email_data', 'Email Receipt Settings', 'spg_wp_siliconpay_editor_add_email_data', 'siliconpay_form', 'normal', 'default');
             add_meta_box('spg_wp_siliconpay_editor_add_quantity_data', 'Quantity Payment', 'spg_wp_siliconpay_editor_add_quantity_data', 'siliconpay_form', 'side', 'default');
             add_meta_box('spg_wp_siliconpay_editor_add_agreement_data', 'Agreement checkbox', 'spg_wp_siliconpay_editor_add_agreement_data', 'siliconpay_form', 'side', 'default');
-            }
+        }
 
 
         function spg_wp_siliconpay_editor_add_form_data()
@@ -367,21 +398,21 @@ class Spg_WP_SiliconPay_Admin
 				  </select>';
             echo '<small>Ensure you are activated for the currency you are selecting. Check <a href="https://silicon-pay.com/#mobile_money" target="_blank">here</a> for more information.</small>';
             echo '<p>Amount to be paid(Set 0 for customer input):</p>';
-            echo '<input type="number" name="_amount" value="' . $amount  . '" class="widefat pf-number" />';
+            echo '<input type="number" name="_amount" value="' . $amount . '" class="widefat pf-number" />';
             if ($minimum == 1) {
                 echo '<br><label><input name="_minimum" type="checkbox" value="1" checked> Make amount minimum payable </label>';
             } else {
                 echo '<br><label><input name="_minimum" type="checkbox" value="1"> Make amount minimum payable </label>';
             }
             echo '<p>Variable Dropdown Amount:<code><label>Format(option:amount):  Option 1:10000,Option 2:3000 Separate options with "," </code></label></p>';
-            echo '<input type="text" name="_variableamount" value="' . $variableamount  . '" class="widefat " />';
+            echo '<input type="text" name="_variableamount" value="' . $variableamount . '" class="widefat " />';
             if ($usevariableamount == 1) {
                 echo '<br><label><input name="_usevariableamount" type="checkbox" value="1" checked> Use dropdown amount option </label>';
             } else {
                 echo '<br><label><input name="_usevariableamount" type="checkbox" value="1" > Use dropdown amount option </label>';
             }
             echo '<p>Pay button Description:</p>';
-            echo '<input type="text" name="_paybtn" value="' . $paybtn  . '" class="widefat" />';
+            echo '<input type="text" name="_paybtn" value="' . $paybtn . '" class="widefat" />';
             echo '<p>Add Extra Charge:</p>';
             echo '<select class="form-control" name="_txncharge" id="parent_id" style="width:100%;">
 								<option value="merchant"' . spg_wp_siliconpay_txncheck('merchant', $txncharge) . '>No, do not add</option>
@@ -398,10 +429,11 @@ class Spg_WP_SiliconPay_Admin
             echo '<p>Success Message after Payment</p>';
             echo '<textarea rows="3"  name="_successmsg"  class="widefat" >' . $successmsg . '</textarea>';
             echo '<p>File Upload Limit(MB):</p>';
-            echo '<input ttype="number" name="_filelimit" value="' . $filelimit  . '" class="widefat  pf-number" />';
+            echo '<input type="number" name="_filelimit" value="' . $filelimit . '" class="widefat  pf-number" />';
             echo '<p>Redirect to page link after payment(keep blank to use normal success message):</p>';
-            echo '<input ttype="text" name="_redirect" value="' . $redirect  . '" class="widefat" />';
+            echo '<input type="text" name="_redirect" value="' . $redirect . '" class="widefat" />';
         }
+
         function spg_wp_siliconpay_editor_add_email_data()
         {
             global $post;
@@ -445,14 +477,15 @@ class Spg_WP_SiliconPay_Admin
 							<option value="yes" ' . spg_wp_siliconpay_txncheck('yes', $sendreceipt) . '>Send</option>
 						</select>';
             echo '<p>Email Subject:</p>';
-            echo '<input type="text" name="_subject" value="' . $subject  . '" class="widefat" />';
+            echo '<input type="text" name="_subject" value="' . $subject . '" class="widefat" />';
             echo '<p>Merchant Name on Receipt:</p>';
-            echo '<input type="text" name="_merchant" value="' . $merchant  . '" class="widefat" />';
+            echo '<input type="text" name="_merchant" value="' . $merchant . '" class="widefat" />';
             echo '<p>Email Heading:</p>';
-            echo '<input type="text" name="_heading" value="' . $heading  . '" class="widefat" />';
+            echo '<input type="text" name="_heading" value="' . $heading . '" class="widefat" />';
             echo '<p>Email Body/Message:</p>';
             echo '<textarea rows="6"  name="_message"  class="widefat" >' . $message . '</textarea>';
         }
+
         function spg_wp_siliconpay_editor_add_recur_data()
         {
             global $post;
@@ -479,12 +512,14 @@ class Spg_WP_SiliconPay_Admin
 							<option value="plan" ' . spg_wp_siliconpay_txncheck('plan', $recur) . '>SiliconPay Plan</option>
 						</select>';
             echo '<p>SiliconPay Recur Plan code:</p>';
-            echo '<input type="text" name="_recurplan" value="' . $recurplan  . '" class="widefat" />
+            echo '<input type="text" name="_recurplan" value="' . $recurplan . '" class="widefat" />
 				<small>Plan amount must match amount on extra form description.</small>';
         }
+
         function spg_wp_siliconpay_reset_stock()
         {
         }
+
         function spg_wp_siliconpay_editor_add_quantity_data()
         {
             global $post;
@@ -541,10 +576,10 @@ class Spg_WP_SiliconPay_Admin
             if ($usequantity == "yes") {
 
                 echo '<p>Max payable quantity:</p>';
-                echo '<input type="number" min="1"  name="_quantity" value="' . $quantity  . '" class="widefat  pf-number" />
+                echo '<input type="number" min="1"  name="_quantity" value="' . esc_attr($quantity) . '" class="widefat  pf-number" />
                 <small>Your users only get to pay in quantities if the from amount is not set to zero and recur is set to none.</small>';
                 echo '<p>Unit of quantity:</p>';
-                echo '<input type="text" name="_quantityunit" value="' . $quantityunit . '" class="widefat" />
+                echo '<input type="text" name="_quantityunit" value="' . esc_attr($quantityunit) . '" class="widefat" />
                 <small>What is the unit of this quantity? Default is <code>Quantity</code>.</small>';
 
 
@@ -557,11 +592,11 @@ class Spg_WP_SiliconPay_Admin
                 <small>Set maximum available items in stock</small>
                 ';
             }
-            if ($useinventory == "yes" && $usequantity  == "yes") {
+            if ($useinventory == "yes" && $usequantity == "yes") {
                 echo '<p>Total Inventory</p>';
-                echo '<input type="number" min="' . $sold . '" name="_inventory" value="' . $inventory  . '" class="widefat  pf-number" />';
+                echo '<input type="number" min="' . esc_attr($sold) . '" name="_inventory" value="' . esc_attr($inventory) . '" class="widefat  pf-number" />';
                 echo '<p>Already sold</p>';
-                echo '<input type="number" name="_sold" value="' . $sold  . '" class="widefat  pf-number" />
+                echo '<input type="number" name="_sold" value="' . esc_attr($sold) . '" class="widefat  pf-number" />
                 <small></small>
 				<br/>';
             }
@@ -582,7 +617,7 @@ class Spg_WP_SiliconPay_Admin
             if ($useagreement == "") {
                 $useagreement = 'no';
             }
-            if ($agreementlink  == "") {
+            if ($agreementlink == "") {
                 $agreementlink = '';
             }
             // Echo out the field
@@ -592,8 +627,9 @@ class Spg_WP_SiliconPay_Admin
 					<option value="yes" ' . spg_wp_siliconpay_txncheck('yes', $useagreement) . '>Yes</option>
 			</select>';
             echo '<p>Agreement Page Link:</p>';
-            echo '<input type="text" name="_agreementlink" value="' . $agreementlink  . '" class="widefat" />';
+            echo '<input type="text" name="_agreementlink" value="' . esc_url($agreementlink) . '" class="widefat" />';
         }
+
         function spg_wp_siliconpay_editor_add_subaccount_data()
         {
             global $post;
@@ -608,22 +644,23 @@ class Spg_WP_SiliconPay_Admin
             $merchantamount = get_post_meta($post->ID, '_merchantamount', true);
 
 
-            if ($subaccount  == "") {
+            if ($subaccount == "") {
                 $subaccount = '';
             }
-            if ($merchantamount  == "") {
+            if ($merchantamount == "") {
                 $merchantamount = '';
             }
             echo '<p>Sub Account code:</p>';
-            echo '<input type="text" name="_subaccount" value="' . $subaccount  . '" class="widefat" />';
+            echo '<input type="text" name="_subaccount" value="' . esc_attr($subaccount) . '" class="widefat" />';
             echo '<p>Transaction Charge bearer:</p>';
             echo '<select class="form-control" name="_txnbearer" id="parent_id" style="width:100%;">
 				<option value="account" ' . spg_wp_siliconpay_txncheck('account', $txnbearer) . '>Merchant (default)</option>
 				<option value="subaccount" ' . spg_wp_siliconpay_txncheck('subaccount', $txnbearer) . '>Sub Account</option>
 			</select>';
             echo '<p>Merchant Amount:</p>';
-            echo '<input type="text" name="_merchantamount" value="' . $merchantamount . '" class="widefat" />';
+            echo '<input type="text" name="_merchantamount" value="' . esc_attr($merchantamount) . '" class="widefat" />';
         }
+
         function spg_wp_siliconpay_editor_add_startdateplan_data()
         {
             global $post;
@@ -639,19 +676,19 @@ class Spg_WP_SiliconPay_Admin
             $enabled = get_post_meta($post->ID, '_startdate_enabled', true);
 
 
-            if ($days  == "") {
+            if ($days == "") {
                 $days = '';
             }
-            if ($plan  == "") {
+            if ($plan == "") {
                 $plan = '';
             }
-            if ($enabled  == "") {
+            if ($enabled == "") {
                 $enabled = 0;
             }
             echo '<p>Number of days:</p>';
-            echo '<input type="number" name="_startdate_days" value="' . $days  . '" class="widefat  pf-number" />';
+            echo '<input type="number" name="_startdate_days" value="' . esc_attr($days) . '" class="widefat  pf-number" />';
             echo '<p>Plan:</p>';
-            echo '<input type="text" name="_startdate_plan_code" value="' . $plan . '" class="widefat" />';
+            echo '<input type="text" name="_startdate_plan_code" value="' . esc_attr($plan) . '" class="widefat" />';
             if ($enabled == 1) {
                 echo '<p><br><label><input name="_startdate_enabled" type="checkbox" value="1" checked> Enable </label></p>';
             } else {
@@ -669,54 +706,54 @@ class Spg_WP_SiliconPay_Admin
             if (!current_user_can('edit_post', $post->ID)) {
                 return $post->ID;
             }
-            $form_meta['_inventory'] = $_POST['_inventory'];
-            $form_meta['_useinventory'] = $_POST['_useinventory'];
-            $form_meta['_amount'] = $_POST['_amount'];
-            $form_meta['_hidetitle'] = $_POST['_hidetitle'];
-            $form_meta['_minimum'] = $_POST['_minimum'];
+            $form_meta['_inventory'] = sanitize_text_field($_POST['_inventory']);
+            $form_meta['_useinventory'] = sanitize_text_field($_POST['_useinventory']);
+            $form_meta['_amount'] = sanitize_text_field($_POST['_amount']);
+            $form_meta['_hidetitle'] = sanitize_text_field($_POST['_hidetitle']);
+            $form_meta['_minimum'] = sanitize_text_field($_POST['_minimum']);
 
-            $form_meta['_variableamount'] = $_POST['_variableamount'];
-            $form_meta['_usevariableamount'] = $_POST['_usevariableamount'];
+            $form_meta['_variableamount'] = sanitize_text_field($_POST['_variableamount']);
+            $form_meta['_usevariableamount'] = sanitize_text_field($_POST['_usevariableamount']);
 
-            $form_meta['_paybtn'] = $_POST['_paybtn'];
-            $form_meta['_currency'] = $_POST['_currency'];
-            $form_meta['_successmsg'] = $_POST['_successmsg'];
-            $form_meta['_txncharge'] = $_POST['_txncharge'];
-            $form_meta['_loggedin'] = $_POST['_loggedin'];
-            $form_meta['_filelimit'] = $_POST['_filelimit'];
-            $form_meta['_redirect'] = $_POST['_redirect'];
+            $form_meta['_paybtn'] = sanitize_text_field($_POST['_paybtn']);
+            $form_meta['_currency'] = sanitize_text_field($_POST['_currency']);
+            $form_meta['_successmsg'] = sanitize_text_field($_POST['_successmsg']);
+            $form_meta['_txncharge'] = sanitize_text_field($_POST['_txncharge']);
+            $form_meta['_loggedin'] = sanitize_text_field($_POST['_loggedin']);
+            $form_meta['_filelimit'] = sanitize_text_field($_POST['_filelimit']);
+            $form_meta['_redirect'] = sanitize_text_field($_POST['_redirect']);
             ///
-            $form_meta['_subject'] = $_POST['_subject'];
-            $form_meta['_merchant'] = $_POST['_merchant'];
-            $form_meta['_heading'] = $_POST['_heading'];
-            $form_meta['_message'] = $_POST['_message'];
-            $form_meta['_sendreceipt'] = $_POST['_sendreceipt'];
-            $form_meta['_sendinvoice'] = $_POST['_sendinvoice'];
+            $form_meta['_subject'] = sanitize_text_field($_POST['_subject']);
+            $form_meta['_merchant'] = sanitize_text_field($_POST['_merchant']);
+            $form_meta['_heading'] = sanitize_text_field($_POST['_heading']);
+            $form_meta['_message'] = sanitize_text_field($_POST['_message']);
+            $form_meta['_sendreceipt'] = sanitize_text_field($_POST['_sendreceipt']);
+            $form_meta['_sendinvoice'] = sanitize_text_field($_POST['_sendinvoice']);
             ///
-            $form_meta['_recur'] = $_POST['_recur'];
-            $form_meta['_recurplan'] = $_POST['_recurplan'];
-            $form_meta['_usequantity'] = $_POST['_usequantity'];
-            $form_meta['_quantity'] = $_POST['_quantity'];
-            $form_meta['_sold'] = $_POST['_sold'];
-            $form_meta['_quantityunit'] = $_POST['_quantityunit'];
+            $form_meta['_recur'] = sanitize_text_field($_POST['_recur']);
+            $form_meta['_recurplan'] = sanitize_text_field($_POST['_recurplan']);
+            $form_meta['_usequantity'] = sanitize_text_field($_POST['_usequantity']);
+            $form_meta['_quantity'] = sanitize_text_field($_POST['_quantity']);
+            $form_meta['_sold'] = sanitize_text_field($_POST['_sold']);
+            $form_meta['_quantityunit'] = sanitize_text_field($_POST['_quantityunit']);
 
-            $form_meta['_useagreement'] = $_POST['_useagreement'];
-            $form_meta['_agreementlink'] = $_POST['_agreementlink'];
-            $form_meta['_subaccount'] = $_POST['_subaccount'];
-            $form_meta['_txnbearer'] = $_POST['_txnbearer'];
-            $form_meta['_merchantamount'] = $_POST['_merchantamount'];
+            $form_meta['_useagreement'] = sanitize_text_field($_POST['_useagreement']);
+            $form_meta['_agreementlink'] = sanitize_text_field($_POST['_agreementlink']);
+            $form_meta['_subaccount'] = sanitize_text_field($_POST['_subaccount']);
+            $form_meta['_txnbearer'] = sanitize_text_field($_POST['_txnbearer']);
+            $form_meta['_merchantamount'] = sanitize_text_field($_POST['_merchantamount']);
             // Add values of $form_meta as custom fields
 
             //Custom Plan with Start Date
-            $form_meta['_startdate_days'] = $_POST['_startdate_days'];
-            $form_meta['_startdate_plan_code'] = $_POST['_startdate_plan_code'];
-            $form_meta['_startdate_enabled'] = $_POST['_startdate_enabled'];
+            $form_meta['_startdate_days'] = sanitize_text_field($_POST['_startdate_days']);
+            $form_meta['_startdate_plan_code'] = sanitize_text_field($_POST['_startdate_plan_code']);
+            $form_meta['_startdate_enabled'] = sanitize_text_field($_POST['_startdate_enabled']);
 
             foreach ($form_meta as $key => $value) { // Cycle through the $form_meta array!
                 if ($post->post_type == 'revision') {
                     return; // Don't store custom data twice
                 }
-                $value = implode(',', (array) $value); // If $value is an array, make it a CSV (unlikely)
+                $value = implode(',', (array)$value); // If $value is an array, make it a CSV (unlikely)
                 if (get_post_meta($post->ID, $key, false)) { // If the custom field already has a value
                     update_post_meta($post->ID, $key, $value);
                 } else { // If the custom field doesn't have a value
@@ -727,6 +764,7 @@ class Spg_WP_SiliconPay_Admin
                 }
             }
         }
+
         add_action('save_post', 'spg_wp_siliconpay_save_data', 1, 2);
     }
 
@@ -737,6 +775,7 @@ class Spg_WP_SiliconPay_Admin
         }
         wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/siliconpay-forms-admin.css', array(), $this->version, 'all');
     }
+
     public function enqueue_scripts()
     {
         wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/siliconpay-forms-admin.js', array('jquery'), $this->version, false);
@@ -781,14 +820,16 @@ function spg_wp_siliconpay_payment_submissions()
                 <h1 style="margin: 0px;"><?php echo $obj->post_title; ?> Payments </h1>
                 <p class="about-description">All payments made for this form</p>
                 <?php if ($data > 0) {
-                ?>
+                    ?>
 
                     <form action="<?php echo admin_url('admin-post.php'); ?>" method="post">
                         <input type="hidden" name="action" value="spg_wp_export_excel">
                         <input type="hidden" name="form_id" value="<?php echo $id; ?>">
-                        <button type="submit" class="button button-primary button-hero load-customize">Export Data to Excel</button>
+                        <button type="submit" class="button button-primary button-hero load-customize">Export Data to
+                            Excel
+                        </button>
                     </form>
-                <?php
+                    <?php
                 } ?>
 
                 <br><br>
@@ -798,9 +839,10 @@ function spg_wp_siliconpay_payment_submissions()
             <div id="icon-users" class="icon32"></div>
             <?php $exampleListTable->display(); ?>
         </div>
-    <?php
+        <?php
     }
 }
+
 add_action('admin_post_spg_wp_export_excel', 'Spg_wp_export_excel');
 
 function Spg_wp_prep_csv_data($item)
@@ -893,10 +935,12 @@ class Spg_WP_SiliconPay_List_Table
     {
         add_action('admin_menu', array($this, 'add_menu_example_list_table_page'));
     }
+
     public function add_menu_example_list_table_page()
     {
         add_menu_page('', '', 'manage_options', 'example-list-table.php', array($this, 'list_table_page'));
     }
+
     public function list_table_page()
     {
         $exampleListTable = new Example_List_Table();
@@ -905,7 +949,7 @@ class Spg_WP_SiliconPay_List_Table
             <div id="icon-users" class="icon32"></div>
             <?php $exampleListTable->display(); ?>
         </div>
-<?php
+        <?php
     }
 }
 
@@ -958,12 +1002,12 @@ class Spg_WP_SiliconPay_Payments_List_Table extends WP_List_Table
                 $txn_code = $dbdata->txn_code;
             }
             $data[] = array(
-                'id'  => $newkey,
+                'id' => $newkey,
                 'email' => '<a href="mailto:' . $dbdata->email . '">' . $dbdata->email . '</a>',
                 'amount' => $currency . '<b>' . number_format($dbdata->amount) . '</b>',
                 'txn_code' => $txn_code,
                 'metadata' => format_data($dbdata->metadata),
-                'date'  => $dbdata->created_at
+                'date' => $dbdata->created_at
             );
         }
 
@@ -977,7 +1021,7 @@ class Spg_WP_SiliconPay_Payments_List_Table extends WP_List_Table
         $this->set_pagination_args(
             array(
                 'total_items' => $totalItems,
-                'per_page'    => $perPage
+                'per_page' => $perPage
             )
         );
         $data = array_slice($data, (($currentPage - 1) * $perPage), $perPage);
@@ -991,15 +1035,16 @@ class Spg_WP_SiliconPay_Payments_List_Table extends WP_List_Table
     public function get_columns()
     {
         $columns = array(
-            'id'  => '#',
+            'id' => '#',
             'email' => 'Email',
             'amount' => 'Amount',
             'txn_code' => 'Txn Code',
             'metadata' => 'Data',
-            'date'  => 'Date'
+            'date' => 'Date'
         );
         return $columns;
     }
+
     /**
      * Define which columns are hidden
      *
@@ -1009,10 +1054,12 @@ class Spg_WP_SiliconPay_Payments_List_Table extends WP_List_Table
     {
         return array();
     }
+
     public function get_sortable_columns()
     {
         return array('email' => array('email', false), 'date' => array('date', false), 'amount' => array('amount', false));
     }
+
     /**
      * Get the table data
      *
@@ -1022,10 +1069,11 @@ class Spg_WP_SiliconPay_Payments_List_Table extends WP_List_Table
     {
         return $data;
     }
+
     /**
      * Define what data to show on each column of the table
      *
-     * @param Array  $item        Data
+     * @param Array $item Data
      * @param String $column_name - Current column name
      *
      * @return Mixed
