@@ -1,9 +1,9 @@
 <?php
 
 $data = array(
-  "req"=>"mobile_money","currency"=>"UGX","encryption_key"=>"50d31ae822b70bfdc20e233777c35a320087",
+  "req"=>"mobile_money","currency"=>"UGX","encryption_key"=>"e68fa1c79bb286a24f6fac4703465e84",
   "amount"=>"9000","emailAddress"=>"test@gmail.com","phone"=>"256...","txRef"=>1234589,
-  "call_back"=>"https://your-call-back-url"
+  "call_back"=>"https://orionstone.online"
 );
 $curl = curl_init();
 
